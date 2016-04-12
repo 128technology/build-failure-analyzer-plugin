@@ -50,10 +50,10 @@ public abstract class FailureReader {
 
     private static final Logger logger = Logger.getLogger(FailureReader.class.getName());
 
-    private static final long TIMEOUT_FILE = 10000;
-    private static final long TIMEOUT_LINE = 1000;
+    private static final long TIMEOUT_FILE = 20000;
+    private static final long TIMEOUT_LINE = 5000;
     private static final long SLEEPTIME = 200;
-    private static final int SCAN_HORIZON = 10000;
+    private static final int SCAN_HORIZON = 1000000;
 
     /** The indication we are looking for. */
     protected Indication indication;
@@ -166,6 +166,7 @@ public abstract class FailureReader {
             long startTime = System.currentTimeMillis();
             while (scanner.hasNext()) {
                 try {
+                    // findWithinHorizon() ignores the delimiter
                     matchingString = scanner.findWithinHorizon(pattern, SCAN_HORIZON);
                     if (matchingString != null) {
                         found = true;
