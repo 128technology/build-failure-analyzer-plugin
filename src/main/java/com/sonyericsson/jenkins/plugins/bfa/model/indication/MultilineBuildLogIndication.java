@@ -66,7 +66,8 @@ public class MultilineBuildLogIndication extends BuildLogIndication {
     @Override
     public Pattern getPattern() {
         if (compiled == null) {
-            compiled = Pattern.compile("(?m)(?s)^[\\r\\n]*?" + getUserProvidedExpression() + "[^\\r\\n]*?$");
+            // compiled = Pattern.compile("(?m)(?s)^[^\\r\\n]*?" + getUserProvidedExpression() + "[^\\r\\n]*?$");
+            compiled = Pattern.compile("(?m)" + getUserProvidedExpression());
         }
         return compiled;
     }
